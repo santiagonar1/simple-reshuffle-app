@@ -9,8 +9,7 @@ message(STATUS "Reshuffle library NOT found, will download and build")
 
 FetchContent_Declare(
         reshuffle
-        GIT_REPOSITORY https://github.com/santiagonar1/reshuffle.git
-        GIT_TAG main
+        URL https://github.com/santiagonar1/reshuffle/archive/refs/heads/main.zip
 )
 
 set(RESHUFFLE_BUILD_TESTS OFF CACHE BOOL "" FORCE)
