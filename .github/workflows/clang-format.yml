@@ -12,16 +12,8 @@ on:
 
 jobs:
   formatting-check:
-    name: Formatting Check - ${{ matrix.path }}
+    name: Formatting Check
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        path:
-          - 'app'
-          - 'include'
-          - 'src'
-          - 'tests'
 
     steps:
       - name: Check out repository
@@ -37,5 +29,5 @@ jobs:
 
       - name: Run clang-format
         run: |
-          find ./${{ matrix.path }} -type f \( -name '*.cpp' -o -name '*.hpp' \) -exec clang-format -style=file -i {} +
+          find . -type f \( -name '*.cpp' -o -name '*.hpp' \) -exec clang-format -style=file -i {} +
           git diff --exit-code

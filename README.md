@@ -1,31 +1,28 @@
-# Modern C++ Template
+# Simple reshuffle app
 
-This is a template that can be used to start developing a project in C++. We use [conan](https://conan.io/) as
-package manager.
+This is an example of how to use the [reshuffle](https://github.com/santiagonar1/reshuffle) library with an external
+application. It demonstrates how a matrix can be distributed across multiple processors, and how this distribution can
+easily be changed using our library
 
-## Build and run
-
-We need some additional tools in order to build it (besides the usual C++ compiler). In particular,
-please make sure to install:
-
-- Conan 2. You can find the official documentation [here](https://docs.conan.io/2/installation.html).
-- CMake and Make. For example in an Ubuntu system, the latter can be installed simply with `sudo apt install make`.
-
-Once both of them are installed, you simply need to execute:
+To build it, do:
 
 ```shell
 mkdir build && cd build
 cmake -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=conan_provider.cmake ..
-make
+make -j
 ```
 
-Now, you should find the binary inside `build/app/`.
-
-## Docker
-
-You can also use the [cpp-dev](https://github.com/santiagonar1/dockerfiles/blob/main/cpp-dev.dockerfile) docker image
-to compile and run the code. If you do not want to build it yourself, run:
+In MacOS, we suggest using Homebrew to install clang, and using
+our [MacBrewLLVMToolchain.cmake](./cmake/MacBrewLLVMToolchain.cmake) when configuring the project:
 
 ```shell
-./run-docker.sh
+cmake -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=conan_provider.cmake -DCMAKE_TOOLCHAIN_FILE=cmake/MacBrewLLVMToolchain.cmake ..
 ```
+
+Then, run it with four ranks:
+
+```shell
+mpirun -np 4 ./simple.out
+```
+
+
