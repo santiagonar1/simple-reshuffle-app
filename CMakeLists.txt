@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.28)
 project(amazing_app)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+
 # Set compiler to use Xcode SDK
 if (APPLE)
     execute_process(
@@ -20,6 +22,8 @@ option(BUILD_TESTING "Build tests" ON)
 file(GLOB SOURCES
         src/*.cpp
 )
+
+find_package(reshuffle)
 
 add_library(${PROJECT_NAME})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
