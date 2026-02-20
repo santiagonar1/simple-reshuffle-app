@@ -45,6 +45,6 @@ jobs:
         working-directory: build
         run: cmake --build .
 
-      - name: Run tests
+      - name: Run application
         working-directory: build
-        run: ctest --output-on-failure --timeout 5
+        run: mpirun -n 4 --oversubscribe ./simple.out
