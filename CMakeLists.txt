@@ -23,7 +23,7 @@ find_package(reshuffle)
 add_executable(simple.out main.cpp)
 
 target_link_libraries(simple.out
-        PRIVATE reshuffle
+        PRIVATE reshuffle::reshuffle
         PRIVATE MPI::MPI_CXX
 )
 
