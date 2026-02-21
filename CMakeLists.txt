@@ -18,7 +18,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif ()
 
 find_package(MPI REQUIRED)
-find_package(reshuffle)
+find_package(reshuffle REQUIRED)
 
 add_executable(simple.out main.cpp)
 
